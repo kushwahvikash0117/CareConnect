@@ -1,30 +1,68 @@
-// src/components/common/Layout.jsx
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import FamilySidebar from "../familymember/FamilySidebar";
 
 const Layout = () => {
-  return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white p-6 hidden md:block">
-        <h2 className="text-xl font-bold mb-8 text-blue-400">SeniorGuard</h2>
-        <nav className="space-y-4">
-          <Link to="/" className="block hover:text-blue-300">Dashboard</Link>
-          <Link to="/alerts" className="block hover:text-blue-300">Alerts</Link>
-          <Link to="/profile" className="block hover:text-blue-300">Profile</Link>
-          <Link to="/settings" className="block hover:text-blue-300">Settings</Link>
-        </nav>
-      </aside>
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-      {/* Main Content Area */}
+  return (
+    <div className="flex h-screen bg-slate-50">
+      
+      {/* Desktop Sidebar */}
+      <div className="hidden md:block">
+        <FamilySidebar />
+      </div>
+
+      {/* Mobile Sidebar */}
+      {sidebarOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/50 z-40"
+            onClick={() => setSidebarOpen(false)}
+          />
+
+          <div className="fixed left-0 top-0 z-50">
+            <FamilySidebar />
+          </div>
+        </>
+      )}
+
+      {/* Main Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="h-16 bg-white shadow-sm flex items-center px-8">
-          <h1 className="text-lg font-semibold text-gray-700">Management System</h1>
+
+        {/* Header */}
+        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-8">
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="md:hidden text-2xl"
+          >
+            ☰
+          </button>
+
+          <div>
+            <h1 className="font-semibold text-slate-800">
+              Family Caregiver Dashboard
+            </h1>
+
+            <p className="hidden md:block text-sm text-slate-500">
+              Monitor and support your loved ones
+            </p>
+          </div>
+
+          <div className="hidden md:flex items-center gap-4">
+            <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">
+              🟢 Active
+            </div>
+          </div>
         </header>
-        
-        <main className="flex-1 overflow-y-auto p-8">
-          <Outlet /> {/* This is where your page content will load */}
+
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto p-4 md:p-8">
+          <Outlet />
         </main>
+
       </div>
     </div>
   );
