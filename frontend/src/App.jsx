@@ -1,6 +1,6 @@
-// src/App.jsx
-import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/common/Layout';
+import AdminLayout from './components/admin/AdminLayout';
 
 // Auth
 import Login from './pages/Login';
@@ -15,7 +15,7 @@ import FraudReportsAdmin from './pages/adminDashboard/FraudReports';
 import SeniorCitizensList from './pages/adminDashboard/SeniorCitizensList';
 import WelfareMonitoringAdmin from './pages/adminDashboard/WelfareMonitoring';
 
-// Family Imports
+// Family Imports (Assuming these share the common Layout)
 import AlertsUpdates from './pages/familyMemberDashboard/AlertsUpdates';
 import Communication from './pages/familyMemberDashboard/Communication';
 import FamilyMembers from './pages/familyMemberDashboard/FamilyMembers';
@@ -36,14 +36,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Redirect root path to /login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        
-        <Route path="/" element={<Layout />}>
-          {/* Admin Routes */}
+
+        {/* Admin Routes with AdminLayout */}
+        <Route element={<AdminLayout />}>
           <Route path="adashboard/home" element={<AdminHome />} />
           <Route path="adashboard/settings" element={<AdminSettings />} />
           <Route path="adashboard/alerts" element={<AlertsMonitor />} />
@@ -51,7 +49,10 @@ function App() {
           <Route path="adashboard/fraud" element={<FraudReportsAdmin />} />
           <Route path="adashboard/seniors" element={<SeniorCitizensList />} />
           <Route path="adashboard/welfare" element={<WelfareMonitoringAdmin />} />
+        </Route>
 
+        {/* Family & Senior Routes with common Layout */}
+        <Route element={<Layout />}>
           {/* Family Routes */}
           <Route path="fdashboard/home" element={<FamilyMemberHome />} />
           <Route path="fdashboard/alerts" element={<AlertsUpdates />} />
