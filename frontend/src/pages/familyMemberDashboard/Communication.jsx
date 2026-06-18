@@ -6,6 +6,7 @@ import {
   Mic,
   AlertTriangle,
   User,
+  UserCircle,
 } from "lucide-react";
 
 const Communication = () => {
@@ -69,29 +70,59 @@ const Communication = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid md:grid-cols-4 gap-4 mb-8">
+    {/* Senior Contact Card */}
+<div className="bg-white rounded-3xl p-6 shadow-md mb-8">
 
-        <button className="bg-blue-600 hover:bg-blue-700 text-white p-5 rounded-2xl shadow-md flex flex-col items-center gap-2 transition">
-          <Phone size={28} />
-          Call Senior
-        </button>
+  <div className="flex items-center gap-4 mb-6">
 
-        <button className="bg-green-600 hover:bg-green-700 text-white p-5 rounded-2xl shadow-md flex flex-col items-center gap-2 transition">
-          <Video size={28} />
-          Video Call
-        </button>
+    <div className="h-16 w-16 rounded-full bg-teal-100 flex items-center justify-center">
+      <UserCircle
+        size={40}
+        className="text-teal-600"
+      />
+    </div>
 
-        <button className="bg-purple-600 hover:bg-purple-700 text-white p-5 rounded-2xl shadow-md flex flex-col items-center gap-2 transition">
-          <MessageCircle size={28} />
-          Message
-        </button>
+    <div>
+      <h2 className="text-xl font-bold">
+        Ram Prasad
+      </h2>
 
-        <button className="bg-orange-500 hover:bg-orange-600 text-white p-5 rounded-2xl shadow-md flex flex-col items-center gap-2 transition">
-          <Mic size={28} />
-          Voice Note
-        </button>
+      <p className="text-green-600">
+        ● Online
+      </p>
+    </div>
 
-      </div>
+  </div>
+
+  <div className="grid md:grid-cols-3 gap-4">
+
+    <a
+      href="tel:+919876543210"
+      className="bg-emerald-500 text-white p-4 rounded-2xl flex justify-center items-center gap-2 hover:bg-emerald-600"
+    >
+      <Phone size={18} />
+      Call
+    </a>
+
+    <a
+      href="sms:+919876543210"
+      className="bg-blue-500 text-white p-4 rounded-2xl flex justify-center items-center gap-2 hover:bg-blue-600"
+    >
+      <MessageCircle size={18} />
+      Message
+    </a>
+
+    <button
+      onClick={() => alert("Video Call Coming Soon")}
+      className="bg-purple-500 text-white p-4 rounded-2xl flex justify-center items-center gap-2 hover:bg-purple-600"
+    >
+      <Video size={18} />
+      Video Call
+    </button>
+
+  </div>
+
+</div>
 
       {/* Emergency Center */}
       <div className="bg-gradient-to-r from-red-500 to-rose-600 text-white rounded-3xl p-6 shadow-lg mb-8">
