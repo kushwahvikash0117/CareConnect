@@ -13,7 +13,7 @@ import { History,  Wifi,
 const LocationDetails = () => {
 return ( <div className="p-6 bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50 min-h-screen">
 
-
+```
   <div className="mb-8">
     <h1 className="text-4xl font-bold text-slate-800">
       Location Tracking
@@ -100,8 +100,8 @@ return ( <div className="p-6 bg-gradient-to-br from-slate-50 via-teal-50 to-cyan
     </span>
 
   </div>
-<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-  
+
+  <div className="grid grid-cols-3 gap-4 mt-6">
 
     <div className="bg-slate-50 rounded-2xl p-4 text-center">
       <p className="text-slate-500 text-sm">
@@ -243,15 +243,23 @@ return ( <div className="p-6 bg-gradient-to-br from-slate-50 via-teal-50 to-cyan
 </div>
 <div className="grid md:grid-cols-3 gap-4 mb-6">
 
+  <button className="group bg-gradient-to-r from-teal-600 to-cyan-600 text-white p-5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
 
-  {/* <button className=""> */}
-  <button
-  onClick={() => window.open(
-      "https://maps.google.com/?q=31.3260,75.5762",
-      "_blank"
-    )}
-  className="group bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
->
+    <div className="flex items-center justify-center gap-3">
+      <Navigation
+        size={22}
+        className="group-hover:rotate-12 transition"
+      />
+
+      <span className="font-semibold">
+        Live Tracking
+      </span>
+    </div>
+
+  </button>
+
+  <button className="group bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+
     <div className="flex items-center justify-center gap-3">
       <Map
         size={22}
@@ -265,14 +273,7 @@ return ( <div className="p-6 bg-gradient-to-br from-slate-50 via-teal-50 to-cyan
 
   </button>
 
-  <button
-  onClick={() =>
-    navigator.clipboard.writeText(
-      "https://maps.google.com/?q=31.3260,75.5762"
-    )
-  }
-  className="group bg-gradient-to-r from-emerald-500 to-green-600 text-white p-5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-
+  <button className="group bg-gradient-to-r from-emerald-500 to-green-600 text-white p-5 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
 
     <div className="flex items-center justify-center gap-3">
       <Share2
@@ -367,132 +368,70 @@ return ( <div className="p-6 bg-gradient-to-br from-slate-50 via-teal-50 to-cyan
 
 
   {/* Location History */}
-  {/* Location History */}
-<div className="bg-white rounded-3xl shadow-md border border-teal-100 p-6">
+  <div className="bg-white rounded-3xl shadow-md border border-teal-100 p-6">
 
-  <div className="flex items-center justify-between mb-6">
 
-    <div className="flex items-center gap-3">
-      <div className="bg-teal-100 p-2 rounded-xl">
-        <History
-          className="text-teal-600"
-          size={22}
-        />
-      </div>
 
-      <div>
-        <h2 className="text-xl font-bold text-slate-800">
-          Recent Location History
-        </h2>
+<div className="flex items-center gap-2 mb-6">
+  <History className="text-teal-600" size={22} />
 
-        <p className="text-sm text-slate-500">
-          Movement activity for today
-        </p>
-      </div>
-    </div>
-
-    <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">
-      3 Events
-    </span>
-
-  </div>
-
-  <div className="relative ml-4">
-
-    <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-slate-200"></div>
-
-    {/* Event 1 */}
-    <div className="flex gap-4 pb-8">
-
-      <div className="w-4 h-4 bg-green-500 rounded-full mt-1 z-10"></div>
-
-      <div className="flex-1">
-
-        <div className="flex justify-between items-center">
-
-          <h3 className="font-semibold text-slate-800">
-            Arrived Home
-          </h3>
-
-          <span className="text-xs text-slate-500">
-            5:15 PM
-          </span>
-
-        </div>
-
-        <p className="text-sm text-slate-500 mt-1">
-          Senior citizen safely returned home.
-        </p>
-
-      </div>
-
-    </div>
-
-    {/* Event 2 */}
-    <div className="flex gap-4 pb-8">
-
-      <div className="w-4 h-4 bg-blue-500 rounded-full mt-1 z-10"></div>
-
-      <div className="flex-1">
-
-        <div className="flex justify-between items-center">
-
-          <h3 className="font-semibold text-slate-800">
-            Community Center Visit
-          </h3>
-
-          <span className="text-xs text-slate-500">
-            2:00 PM
-          </span>
-
-        </div>
-
-        <p className="text-sm text-slate-500 mt-1">
-          Stayed for approximately 1 hour 30 minutes.
-        </p>
-
-      </div>
-
-    </div>
-
-    {/* Event 3 */}
-    <div className="flex gap-4">
-
-      <div className="w-4 h-4 bg-yellow-500 rounded-full mt-1 z-10"></div>
-
-      <div className="flex-1">
-
-        <div className="flex justify-between items-center">
-
-          <h3 className="font-semibold text-slate-800">
-            Left Home
-          </h3>
-
-          <span className="text-xs text-slate-500">
-            1:10 PM
-          </span>
-
-        </div>
-
-        <p className="text-sm text-slate-500 mt-1">
-          Started daily outdoor activities.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
+  <h2 className="text-xl font-semibold">
+    Recent Location History
+  </h2>
 </div>
+
+    <div className="relative ml-3">
+
+  <div className="absolute left-1 top-2 bottom-2 w-0.5 bg-slate-200"></div>
+
+      <div className="flex gap-4">
+        <div className="w-3 h-3 bg-green-500 rounded-full mt-2"></div>
+
+        <div>
+          <p className="font-semibold">
+            Arrived Home
+          </p>
+
+          <p className="text-sm text-slate-500">
+            Today • 5:15 PM
+          </p>
+        </div>
+      </div>
+
+      <div className="flex gap-4 mb-6">
+        <div className="w-3 h-3 bg-blue-500 rounded-full mt-2"></div>
+
+        <div>
+          <p className="font-semibold">
+            Visited Community Center
+          </p>
+
+          <p className="text-sm text-slate-500">
+            Today • 2:00 PM
+          </p>
+        </div>
+      </div>
+
+      <div className="flex gap-4">
+        <div className="w-3 h-3 bg-yellow-500 rounded-full mt-2"></div>
+
+        <div>
+          <p className="font-semibold">
+            Left Home
+          </p>
+
+          <p className="text-sm text-slate-500">
+            Today • 1:10 PM
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 </div>
 
 );
 };
 
-<<<<<<< HEAD
 export default LocationDetails;
-=======
-export default LocationDetails;
->>>>>>> 14588104948233b8a4a23d2231641e27f47f8a8f

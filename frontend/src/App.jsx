@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/common/Layout';
-import AdminLayout from './components/admin/AdminLayout';
 
 // Auth
 import Login from './pages/Login';
@@ -40,8 +39,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
+        <Route element={<Layout />}>
         {/* Admin Routes with AdminLayout */}
-        <Route element={<AdminLayout />}>
           <Route path="adashboard/home" element={<AdminHome />} />
           <Route path="adashboard/settings" element={<AdminSettings />} />
           <Route path="adashboard/alerts" element={<AlertsMonitor />} />
@@ -49,10 +48,8 @@ function App() {
           <Route path="adashboard/fraud" element={<FraudReportsAdmin />} />
           <Route path="adashboard/seniors" element={<SeniorCitizensList />} />
           <Route path="adashboard/welfare" element={<WelfareMonitoringAdmin />} />
-        </Route>
 
         {/* Family & Senior Routes with common Layout */}
-        <Route element={<Layout />}>
           {/* Family Routes */}
           <Route path="fdashboard/home" element={<FamilyMemberHome />} />
           <Route path="fdashboard/alerts" element={<AlertsUpdates />} />

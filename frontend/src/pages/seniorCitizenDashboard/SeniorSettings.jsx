@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Added for navigation
 import {
   Bell,
   Phone,
@@ -10,149 +11,74 @@ import {
 } from "lucide-react";
 
 const SeniorSettings = () => {
+  const navigate = useNavigate();
 
   const handleSettingClick = (setting) => {
     alert(`${setting} feature coming soon`);
   };
 
   const handleLogout = () => {
+    // Clear user session
+    localStorage.removeItem("token");
+    
+    // Redirect to Login page
     alert("Logged Out Successfully");
+    navigate("/login"); 
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-100 p-6">
-
-      <h1 className="text-3xl font-bold text-slate-800 mb-2">
-        Settings
-      </h1>
-
+      <h1 className="text-3xl font-bold text-slate-800 mb-2">Settings</h1>
       <p className="text-slate-500 mb-8">
         Manage your account, emergency contacts and preferences.
       </p>
 
       <div className="space-y-5">
-
         {/* Notifications */}
-        <div
-          onClick={() => handleSettingClick("Notifications")}
-          className="bg-white rounded-3xl shadow-lg p-5 flex justify-between items-center cursor-pointer hover:shadow-xl transition"
-        >
-          <div className="flex items-center gap-4">
-            <Bell className="text-blue-600" />
-
-            <div>
-              <h3 className="font-semibold">
-                Notifications
-              </h3>
-
-              <p className="text-sm text-slate-500">
-                Alert and reminder preferences
-              </p>
-            </div>
-          </div>
-
-          <ChevronRight />
-        </div>
+        <SettingItem 
+          icon={<Bell className="text-blue-600" />} 
+          title="Notifications" 
+          desc="Alert and reminder preferences" 
+          onClick={() => handleSettingClick("Notifications")} 
+        />
 
         {/* Emergency Contacts */}
-        <div
-          onClick={() => handleSettingClick("Emergency Contacts")}
-          className="bg-white rounded-3xl shadow-lg p-5 flex justify-between items-center cursor-pointer hover:shadow-xl transition"
-        >
-          <div className="flex items-center gap-4">
-            <Phone className="text-green-600" />
-
-            <div>
-              <h3 className="font-semibold">
-                Emergency Contacts
-              </h3>
-
-              <p className="text-sm text-slate-500">
-                Manage trusted contacts
-              </p>
-            </div>
-          </div>
-
-          <ChevronRight />
-        </div>
+        <SettingItem 
+          icon={<Phone className="text-green-600" />} 
+          title="Emergency Contacts" 
+          desc="Manage trusted contacts" 
+          onClick={() => handleSettingClick("Emergency Contacts")} 
+        />
 
         {/* Privacy */}
-        <div
-          onClick={() => handleSettingClick("Privacy & Security")}
-          className="bg-white rounded-3xl shadow-lg p-5 flex justify-between items-center cursor-pointer hover:shadow-xl transition"
-        >
-          <div className="flex items-center gap-4">
-            <Shield className="text-red-500" />
-
-            <div>
-              <h3 className="font-semibold">
-                Privacy & Security
-              </h3>
-
-              <p className="text-sm text-slate-500">
-                Account protection settings
-              </p>
-            </div>
-          </div>
-
-          <ChevronRight />
-        </div>
+        <SettingItem 
+          icon={<Shield className="text-red-500" />} 
+          title="Privacy & Security" 
+          desc="Account protection settings" 
+          onClick={() => handleSettingClick("Privacy & Security")} 
+        />
 
         {/* Language */}
-        <div
-          onClick={() => handleSettingClick("Language")}
-          className="bg-white rounded-3xl shadow-lg p-5 flex justify-between items-center cursor-pointer hover:shadow-xl transition"
-        >
-          <div className="flex items-center gap-4">
-            <Globe className="text-purple-600" />
-
-            <div>
-              <h3 className="font-semibold">
-                Language
-              </h3>
-
-              <p className="text-sm text-slate-500">
-                English (India)
-              </p>
-            </div>
-          </div>
-
-          <ChevronRight />
-        </div>
+        <SettingItem 
+          icon={<Globe className="text-purple-600" />} 
+          title="Language" 
+          desc="English (India)" 
+          onClick={() => handleSettingClick("Language")} 
+        />
 
         {/* Appearance */}
-        <div
-          onClick={() => handleSettingClick("Appearance")}
-          className="bg-white rounded-3xl shadow-lg p-5 flex justify-between items-center cursor-pointer hover:shadow-xl transition"
-        >
-          <div className="flex items-center gap-4">
-            <Moon className="text-slate-700" />
-
-            <div>
-              <h3 className="font-semibold">
-                Appearance
-              </h3>
-
-              <p className="text-sm text-slate-500">
-                Light Mode
-              </p>
-            </div>
-          </div>
-
-          <ChevronRight />
-        </div>
-
+        <SettingItem 
+          icon={<Moon className="text-slate-700" />} 
+          title="Appearance" 
+          desc="Light Mode" 
+          onClick={() => handleSettingClick("Appearance")} 
+        />
       </div>
 
       {/* App Info */}
       <div className="bg-white rounded-3xl shadow-lg p-5 mt-6">
-        <h3 className="font-semibold text-slate-800">
-          SeniorGuard
-        </h3>
-
-        <p className="text-sm text-slate-500 mt-1">
-          Version 1.0.0
-        </p>
+        <h3 className="font-semibold text-slate-800">SeniorGuard</h3>
+        <p className="text-sm text-slate-500 mt-1">Version 1.0.0</p>
       </div>
 
       {/* Logout Button */}
@@ -163,13 +89,25 @@ const SeniorSettings = () => {
         <LogOut size={18} />
         Logout
       </button>
-
     </div>
   );
 };
 
-<<<<<<< HEAD
+// Reusable component for cleaner code
+const SettingItem = ({ icon, title, desc, onClick }) => (
+  <div
+    onClick={onClick}
+    className="bg-white rounded-3xl shadow-lg p-5 flex justify-between items-center cursor-pointer hover:shadow-xl transition"
+  >
+    <div className="flex items-center gap-4">
+      {icon}
+      <div>
+        <h3 className="font-semibold">{title}</h3>
+        <p className="text-sm text-slate-500">{desc}</p>
+      </div>
+    </div>
+    <ChevronRight className="text-slate-400" />
+  </div>
+);
+
 export default SeniorSettings;
-=======
-export default SeniorSettings;
->>>>>>> 14588104948233b8a4a23d2231641e27f47f8a8f

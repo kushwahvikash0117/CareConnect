@@ -139,82 +139,52 @@ const Communication = () => {
           emergencies or send urgent notifications.
         </p>
 
-      <a
-  href="tel:+919876543210"
-  className="inline-flex items-center gap-2 bg-white text-red-600 px-6 py-3 rounded-xl font-semibold"
->
-  <Phone size={18} />
-  Emergency Call
-</a>
+        <button className="bg-white text-red-600 px-6 py-3 rounded-xl font-semibold">
+          🚨 Emergency Call
+        </button>
 
       </div>
 
       {/* Recent Messages */}
-     <div className="bg-white rounded-3xl shadow-md p-6">
+      <div className="bg-white rounded-3xl shadow-md p-6">
 
-  <h2 className="text-2xl font-bold mb-6">
-    Communication Activity
-  </h2>
+        <h2 className="text-2xl font-bold mb-6">
+          Recent Messages
+        </h2>
 
-  <div className="space-y-5">
+        <div className="space-y-4">
 
-    <div className="flex justify-between items-center border-b pb-4">
+          {recentMessages.map((msg, index) => (
+            <div
+              key={index}
+              className={`max-w-lg p-4 rounded-2xl ${
+                msg.type === "received"
+                  ? "bg-slate-100"
+                  : "bg-teal-100 ml-auto"
+              }`}
+            >
+              <div className="flex justify-between mb-1">
 
-      <div>
-        <h3 className="font-semibold">
-          Voice Call Completed
-        </h3>
+                <span className="font-semibold text-sm">
+                  {msg.sender}
+                </span>
 
-        <p className="text-sm text-slate-500">
-          Duration: 12 minutes
-        </p>
+                <span className="text-xs text-slate-500">
+                  {msg.time}
+                </span>
+
+              </div>
+
+              <p className="text-slate-700">
+                {msg.message}
+              </p>
+
+            </div>
+          ))}
+
+        </div>
+
       </div>
-
-      <span className="text-sm text-slate-400">
-        Today • 10:15 AM
-      </span>
-
-    </div>
-
-    <div className="flex justify-between items-center border-b pb-4">
-
-      <div>
-        <h3 className="font-semibold">
-          SMS Reminder Sent
-        </h3>
-
-        <p className="text-sm text-slate-500">
-          Medication reminder delivered
-        </p>
-      </div>
-
-      <span className="text-sm text-slate-400">
-        Today • 8:30 AM
-      </span>
-
-    </div>
-
-    <div className="flex justify-between items-center">
-
-      <div>
-        <h3 className="font-semibold">
-          Emergency Contact Check
-        </h3>
-
-        <p className="text-sm text-slate-500">
-          Contact verified successfully
-        </p>
-      </div>
-
-      <span className="text-sm text-slate-400">
-        Yesterday
-      </span>
-
-    </div>
-
-  </div>
-
-</div>
 
     </div>
   );

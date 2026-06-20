@@ -11,10 +11,8 @@ import {
   MessageCircle,
   AlertTriangle,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const MySeniorProfile = () => {
-  const navigate = useNavigate();
   return (
     <div className="p-6 bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50 min-h-screen">
 
@@ -211,34 +209,24 @@ const MySeniorProfile = () => {
         </div>
 
         {/* Quick Actions */}
-        {/* Quick Actions */}
-<div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 gap-4">
 
-  <button
-    onClick={() => navigate("/fdashboard/communication")}
-    className="bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2 transition"
-  >
-    <Phone size={18} />
-    Call Senior
-  </button>
+          <button className="bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2">
+            <Phone size={18} />
+            Call Senior
+          </button>
 
-  <button
-    onClick={() => navigate("/fdashboard/communication")}
-    className="bg-emerald-500 hover:bg-emerald-600 text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2 transition"
-  >
-    <MessageCircle size={18} />
-    Message
-  </button>
+          <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2">
+            <MessageCircle size={18} />
+            Message
+          </button>
 
-  <button
-  onClick={() => navigate("/fdashboard/members")}
-  className="bg-red-500 hover:bg-red-600 text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2"
->
-  <AlertTriangle size={18} />
-  Emergency Contact
-</button>
+          <button className="bg-red-500 hover:bg-red-600 text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2">
+            <AlertTriangle size={18} />
+            Emergency Contact
+          </button>
 
-</div>
+        </div>
 
       </div>
     </div>
