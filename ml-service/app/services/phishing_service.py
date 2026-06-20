@@ -1,32 +1,31 @@
-from transformers import pipeline
-from app.utils.model_loader import ModelLoader
+import joblib
 
 
 class PhishingService:
 
     def __init__(self):
-        self.classifier = pipeline(
-            "text-classification",
-            model="models/phishing_model"
+
+        self.model = joblib.load(
+            "models/sms_model.pkl"
         )
 
     def detect(self, message: str):
 
-        result = self.classifier(message)[0]
+        prediction = self.model.predict(
+            [message]
+        )[0]
 
-        label_map = {
-            "LABEL_0": "HAM",
-            "LABEL_1": "SPAM"
-        }
+        confidence = max(
+            self.model.predict_proba(
+                [message]
+            )[0]
+        )
 
         return {
             "message": message,
-            "label": label_map.get(
-                result["label"],
-                result["label"]
-            ),
+            "label": prediction.upper(),
             "confidence": round(
-                result["score"] * 100,
+                confidence * 100,
                 2
             )
         }
