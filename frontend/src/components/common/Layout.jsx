@@ -1,29 +1,70 @@
 // src/components/common/Layout.jsx
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+
+import React from "react";
+import { Outlet, useLocation } from "react-router-dom";
+
+import AdminSidebar from "../dashboard/AdminSidebar";
+import FamilySidebar from "../dashboard/FamilySidebar";
+import SeniorSidebar from "../dashboard/SeniorSidebar";
 
 const Layout = () => {
+  const location = useLocation();
+
+  const getSidebar = () => {
+    if (location.pathname.startsWith("/adashboard")) {
+      return <AdminSidebar />;
+    }
+
+    if (location.pathname.startsWith("/fdashboard")) {
+      return <FamilySidebar />;
+    }
+
+    if (location.pathname.startsWith("/sdashboard")) {
+      return <SeniorSidebar />;
+    }
+
+    return null;
+  };
+
+  const getTitle = () => {
+    if (location.pathname.startsWith("/adashboard")) {
+      return "Admin Dashboard";
+    }
+
+    if (location.pathname.startsWith("/fdashboard")) {
+      return "Family Dashboard";
+    }
+
+    if (location.pathname.startsWith("/sdashboard")) {
+      return "Senior Citizen Dashboard";
+    }
+
+    return "CareConnect";
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white p-6 hidden md:block">
-        <h2 className="text-xl font-bold mb-8 text-blue-400">SeniorGuard</h2>
-        <nav className="space-y-4">
-          <Link to="/" className="block hover:text-blue-300">Dashboard</Link>
-          <Link to="/alerts" className="block hover:text-blue-300">Alerts</Link>
-          <Link to="/profile" className="block hover:text-blue-300">Profile</Link>
-          <Link to="/settings" className="block hover:text-blue-300">Settings</Link>
-        </nav>
-      </aside>
+      {/* Dynamic Sidebar */}
+      {getSidebar()}
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="h-16 bg-white shadow-sm flex items-center px-8">
-          <h1 className="text-lg font-semibold text-gray-700">Management System</h1>
+        {/* Header */}
+        <header className="h-16 bg-white shadow-sm flex items-center justify-between px-8">
+          <h1 className="text-xl font-semibold text-gray-700">
+            {getTitle()}
+          </h1>
+
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
+              U
+            </div>
+          </div>
         </header>
-        
-        <main className="flex-1 overflow-y-auto p-8">
-          <Outlet /> {/* This is where your page content will load */}
+
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto p-6">
+          <Outlet />
         </main>
       </div>
     </div>

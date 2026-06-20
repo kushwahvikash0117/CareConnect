@@ -3,3 +3,9 @@ frontend/node_modules
 
 backend/.env
 frontend/.env
+
+ml-service/venv/
+ml-service/__pycache__/
+ml-service/.env
+ml-service/models/
+ml-service/results/
