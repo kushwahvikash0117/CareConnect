@@ -16,7 +16,11 @@ const app = express();
 Middleware
 ========================= */
 
-app.use(cors());
+app.use(cors({
+    origin: ["http://4.240.112.60:8000", "https://care-connect-steel-zeta.vercel.app"],
+    methods: ["POST", "PUT", "DELETE", "GET", "PATCH"],
+    credentials: true
+}));
 
 app.use(
 express.json({
